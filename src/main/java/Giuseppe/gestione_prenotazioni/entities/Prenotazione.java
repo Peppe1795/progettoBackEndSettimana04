@@ -28,4 +28,5 @@ public class Prenotazione {
 	@ManyToOne
 	private Postazione postazione;
 	private LocalDate dataPrenotazione;
+	private LocalDate scadenza = dataPrenotazione.plusDays(1);
 }
