@@ -47,6 +47,9 @@ public class Gestione_prenotazioniRunner implements CommandLineRunner {
 		prenotazioneSrv.save(beanCon.prenotazione1());
 		prenotazioneSrv.save(beanCon.prenotazione2());
 		prenotazioneSrv.save(beanCon.prenotazione3());
+
+		postazioneSrv.getPostazioneByCitta("Milano");
+
 	}
 
 }

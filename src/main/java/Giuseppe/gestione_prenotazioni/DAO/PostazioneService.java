@@ -20,13 +20,27 @@ public class PostazioneService {
 		log.info("La postazione con id: " + postazione.getId() + " salvato!");
 	}
 
-	public List<Postazione> findAll() {
-		return pr.findAll();
-	}
-
 	public Postazione findById(Long id) throws LongIdNotFoundException {
 
 		return pr.findById(id).orElseThrow(() -> new LongIdNotFoundException(id));
+
+	}
+
+	public List<Postazione> getPostazioneByCitta(String citta) {
+		List<Postazione> postazioni = pr.findByEdificioCitta(citta);
+
+		if (postazioni.isEmpty()) {
+			log.info("Nessuna postazione trovata per la città: {}", citta);
+		} else {
+			log.info("Postazioni trovate per la città {}: ", citta);
+			for (Postazione postazione : postazioni) {
+				log.info("ID: {}, Descrizione: {}, Tipo: {}, Occupati Max: {}, Edificio: {}", postazione.getId(),
+						postazione.getDescrizione(), postazione.getTipoPostazione(), postazione.getNumeroOccupantiMax(),
+						postazione.getEdificio().getCitta());
+			}
+		}
+
+		return postazioni;
 	}
 
 	public void findByIdAndUpdate(Long id, Postazione postazione) throws LongIdNotFoundException {

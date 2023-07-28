@@ -24,5 +24,4 @@ public class Edificio {
 	private String nome;
 	private String indirizzo;
 	private String citta;
-
 }

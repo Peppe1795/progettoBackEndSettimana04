@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import Giuseppe.gestione_prenotazioni.Exception.UUIDNotFoundException;
 import Giuseppe.gestione_prenotazioni.entities.Prenotazione;
+import Giuseppe.gestione_prenotazioni.entities.User;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -17,12 +18,18 @@ public class PrenotazioneService {
 	private PrenotazioneRepository pr;
 
 	public void save(Prenotazione prenotazione) {
-		pr.save(prenotazione);
-		log.info("La prenotazione con id: " + prenotazione.getId() + " salvata!");
+		User user = prenotazione.getUser();
+		if (!pr.existsByUserAndDataPrenotazione(user, prenotazione.getDataPrenotazione())) {
+			pr.save(prenotazione);
+			log.info("La prenotazione con id: " + prenotazione.getId() + " salvata!");
+		} else {
+			log.warn("Attenzione prenotazione gia presente");
+		}
+
 	}
 
-	public List<Prenotazione> findAll() {
-		return pr.findAll();
+	public List<Prenotazione> findByUser(User user) {
+		return pr.findByUser(user);
 	}
 
 	public Prenotazione findById(UUID id) throws UUIDNotFoundException {

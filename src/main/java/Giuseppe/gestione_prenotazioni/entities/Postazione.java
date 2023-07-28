@@ -31,4 +31,5 @@ public class Postazione {
 	private int numeroOccupantiMax;
 	@ManyToOne
 	private Edificio edificio;
+
 }
