@@ -36,19 +36,19 @@ public class BeanConfiguration {
 	@Bean("Prenotazione1")
 	public Prenotazione prenotazione1() {
 		return Prenotazione.builder().id(UUID.randomUUID()).user(user1()).postazione(postazione1())
-				.dataPrenotazione(LocalDate.of(2023, 5, 10)).build();
+				.dataPrenotazione(LocalDate.of(2023, 5, 10)).scadenza(LocalDate.of(2023, 5, 10).plusDays(1)).build();
 	}
 
 	@Bean("Prenotazione2")
 	public Prenotazione prenotazione2() {
 		return Prenotazione.builder().id(UUID.randomUUID()).user(user2()).postazione(postazione2())
-				.dataPrenotazione(LocalDate.of(2023, 6, 15)).build();
+				.dataPrenotazione(LocalDate.of(2023, 6, 15)).scadenza(LocalDate.of(2023, 6, 15).plusDays(1)).build();
 	}
 
 	@Bean("Prenotazione3")
 	public Prenotazione prenotazione3() {
 		return Prenotazione.builder().id(UUID.randomUUID()).user(user3()).postazione(postazione3())
-				.dataPrenotazione(LocalDate.of(2023, 7, 18)).build();
+				.dataPrenotazione(LocalDate.of(2023, 7, 18)).scadenza((LocalDate.of(2023, 7, 18)).plusDays(1)).build();
 	}
 
 	@Bean("Postazione1")
